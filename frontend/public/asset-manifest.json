@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/TestAcne-frontend/static/css/main.5e7b1615.css",
+    "main.js": "/TestAcne-frontend/static/js/main.151e4c09.js",
+    "static/js/453.8ab44547.chunk.js": "/TestAcne-frontend/static/js/453.8ab44547.chunk.js",
+    "static/media/bootstrap-icons.woff?": "/TestAcne-frontend/static/media/bootstrap-icons.1295669cd4e305c97f2c.woff",
+    "static/media/bootstrap-icons.woff2?": "/TestAcne-frontend/static/media/bootstrap-icons.92ea18a81d737146ff04.woff2",
+    "static/media/6566612.jpg": "/TestAcne-frontend/static/media/6566612.a31dd7b8f47cbc9ff9e1.jpg",
+    "static/media/7769280.jpg": "/TestAcne-frontend/static/media/7769280.6b8e5eed22d6c0c95f1b.jpg",
+    "static/media/10682218.jpg": "/TestAcne-frontend/static/media/10682218.aadfc3184ef764f0da9b.jpg",
+    "static/media/COSMED.png": "/TestAcne-frontend/static/media/COSMED.71546bca1b8c909c8ba2.png",
+    "static/media/5387915.jpg": "/TestAcne-frontend/static/media/5387915.2eb495efd5ea21cf9f70.jpg",
+    "static/media/NTUT logo.png": "/TestAcne-frontend/static/media/NTUT logo.86c6d41214b20c8da6b2.png",
+    "static/media/TMUSHH logo.jpg": "/TestAcne-frontend/static/media/TMUSHH logo.52d6a4ecda3862b64d24.jpg",
+    "static/media/TMU logo.png": "/TestAcne-frontend/static/media/TMU logo.9c7d4f63ecef68c9ff28.png",
+    "index.html": "/TestAcne-frontend/index.html",
+    "main.5e7b1615.css.map": "/TestAcne-frontend/static/css/main.5e7b1615.css.map",
+    "main.151e4c09.js.map": "/TestAcne-frontend/static/js/main.151e4c09.js.map",
+    "453.8ab44547.chunk.js.map": "/TestAcne-frontend/static/js/453.8ab44547.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5e7b1615.css",
+    "static/js/main.151e4c09.js"
+  ]
+}

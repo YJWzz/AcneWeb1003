@@ -1,0 +1,419 @@
+{
+  "name": "chatbot",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "/chatbot",
+        "responseMode": "responseNode",
+        "options": {
+          "allowedOrigins": "*"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        520,
+        440
+      ],
+      "id": "90e5f9de-a446-4bd8-9901-b665d6c2a707",
+      "name": "Webhook1",
+      "webhookId": "a73e5c5d-576c-420e-8088-478459cb54e5"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1100,
+        700
+      ],
+      "id": "c325dbda-8d45-4f54-b7fb-2d54721b6104",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "1tCgr7tg2dLuYKr5",
+          "name": "Acne"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseCode": 200,
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "http://127.0.0.1:5000"
+              },
+              {
+                "name": "Access-Control-Allow-Methods",
+                "value": "POST, OPTIONS"
+              },
+              {
+                "name": "Access-Control-Allow-Headers",
+                "value": "Content-Type"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        2340,
+        440
+      ],
+      "id": "1ef52be4-94c5-43ec-9845-3551eeb6fd1d",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=使用者問：{{ $json.question }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        1320,
+        440
+      ],
+      "id": "f060790f-7a86-4de6-9c74-e23a20120912",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "17e260bd-59b7-4f10-b9d4-47a47061a14f",
+              "name": "question",
+              "value": "={{$json[\"body\"][\"message\"]}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        880,
+        440
+      ],
+      "id": "34e855f7-b1b9-4f73-94d5-29531e2c81e4",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=你是青春痘（痤瘡）專家助理。  \n每次接到使用者提問，請先使用工具 \"acne_knowledge_base\" 抓取相關內容，  \n然後**依提問重點直接回答**，不要再反問使用者。  \n回答請用繁體中文，條列式呈現並分門別類（外用、口服、生活調整）。  \n聚焦在使用者的「問題主題」，盡量不要多談其它。\n如果使用者詢問可以問什麼問題 請列出舉例",
+              "role": "system"
+            },
+            {
+              "content": "={{ $json.output }}"
+            },
+            {
+              "role": "assistant"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1740,
+        440
+      ],
+      "id": "64cca9d8-84ce-4c8b-9553-1924df255d80",
+      "name": "OpenAI2",
+      "credentials": {
+        "openAiApi": {
+          "id": "1tCgr7tg2dLuYKr5",
+          "name": "Acne"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1d6c21eb-2628-4f48-adce-4ccaafb130f4",
+              "name": "reply",
+              "value": "={{$node[\"OpenAI2\"].json[\"message\"][\"content\"]}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2140,
+        440
+      ],
+      "id": "dcdca197-5815-4104-90af-02a73fa5a943",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "model": "text-embedding-3-large",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        780,
+        1540
+      ],
+      "id": "f8471d4e-2ab8-464b-af86-f15b14525477",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "faiy0jZwkZzy3wxA",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "text-embedding-3-large",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1860,
+        880
+      ],
+      "id": "f9e7a183-f96b-40ef-bb3f-5571623b364b",
+      "name": "Embeddings OpenAI1",
+      "credentials": {
+        "openAiApi": {
+          "id": "1tCgr7tg2dLuYKr5",
+          "name": "Acne"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolName": "acne_knowledge_base",
+        "toolDescription": "Retrieve acne care guidance from knowledge base",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "acne-3large",
+          "mode": "list",
+          "cachedResultName": "acne-3large"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        1860,
+        680
+      ],
+      "id": "405736b9-ee34-49d7-9652-92c5b0cddb70",
+      "name": "Pinecone Vector Store2",
+      "credentials": {
+        "pineconeApi": {
+          "id": "vm3hQo3tfCyF9aBt",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "load",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "acne-3large",
+          "mode": "list",
+          "cachedResultName": "acne-3large"
+        },
+        "prompt": "={{$node[\"Edit Fields\"].json[\"question\"]}}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1,
+      "position": [
+        900,
+        1420
+      ],
+      "id": "fb2a703b-7d0e-428c-84f8-667b35132b50",
+      "name": "acne_knowledge_base",
+      "credentials": {
+        "pineconeApi": {
+          "id": "vm3hQo3tfCyF9aBt",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## GPT version\n**3.5** > **4.0**\nNOW:4o\n\n"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        820
+      ],
+      "id": "36a1f903-106f-4082-bbd6-f8e4e77f1956",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## GPT version\n**3.5** > **4.0**\nNOW:4o\n\n"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        240
+      ],
+      "id": "9edeeec1-a7da-4881-b401-5e74c50cc94e",
+      "name": "Sticky Note1"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "OpenAI2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "acne_knowledge_base",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store2",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store2": {
+      "ai_tool": [
+        [
+          {
+            "node": "OpenAI2",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "acne_knowledge_base": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "3b9c13b1-9542-4321-9d76-02e4e06a80d5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "6da64e1e367b15d2a03144848bdc49f5a04c577d358980ee665ed67f4b809383"
+  },
+  "id": "ABl5BeWMwS82AUd0",
+  "tags": []
+}

@@ -1,0 +1,274 @@
+.wrapper {
+  font-family: Arial, sans-serif;
+  /* text-align: center; */
+  background-color: #f0f8ff;
+  padding-top: 20px;
+}
+
+.loadingOverlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 真實進度條外框 */
+.progressBar {
+  width: 80%;
+  max-width: 320px;
+  height: 6px;
+  background: #e5e5e5;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+/* 進度條本體，寬度用 inline style 設定 */
+.progress {
+  height: 100%;
+  background: #3c8dff;
+  transition: width .4s ease;
+}
+
+
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.uploadTime {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.resultContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  flex-wrap: wrap;
+}
+
+.resultCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+}
+
+.resultImage {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  object-fit: cover;
+  margin: 10px;
+}
+
+.back {
+  text-align: center;
+  margin: 30px 30px 150px 30px;
+}
+
+.backLink {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.backLink:hover {
+  background-color: #45A049;
+}
+
+.adviceSection {
+  /* margin-top: 40px; */
+  padding: 20px;
+  background-color: #f5f7ff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.adviceSection h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #4caf50;
+}
+
+/* .adviceList {
+  padding-left: 20px;
+}
+
+.adviceList li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+} */
+
+.adviceTitle {
+  margin: 40px 0px 20px 0px;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: bold;
+  color: #4caf50;
+}
+
+.adviceHTML {
+  background-color: #9df1b2;
+  border-radius: 8px;
+  color: #2c3e50;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  padding: 40px 10% 40px 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+.adviceHTML h3 {
+  font-size: 1.2rem;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.adviceHTML ul {
+  padding-left: 20px;
+  list-style: disc;
+}
+
+.adviceHTML li {
+  margin-bottom: 8px;
+}
+
+.adviceHTML strong {
+  font-weight: bold;
+}
+
+.adviceHTML em {
+  font-style: italic;
+}
+
+
+.adviceLoading {
+  display: flex;
+  flex-direction: column !important;
+  align-items: center;
+  margin-top: 10px;
+  color: #555;
+  font-size: 1rem;
+}
+
+
+.spinner {
+  border: 6px solid #ddd;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 10px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*底部css*/
+
+.footer {
+  background-color: #4caf50;
+  color: white;
+  padding: 40px 5% 20px 5%;
+  margin-top: 40px;
+}
+
+.footerContainer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footerSection {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footerSection h4 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.footerSection p {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.footerSection ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footerSection ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footerSection a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footerSection ul li a:hover {
+  text-decoration: underline;
+  color: #c8f8d0;
+}
+
+.footerlogo {
+  width:120px;
+  height:auto;
+  margin:0px 20px 10px 0px;
+}
+
+.footerlink{
+  display: flex;
+  justify-content:left;
+  flex-wrap: wrap;
+  gap: 7rem;
+}
+
+.footerSection ul li a:hover {
+  text-decoration: underline;
+  color: #c8f8d0;
+}
+
+.footerBottom {
+  text-align: center;
+  margin-top: 2rem;
+  border-top: 1px solid #ffffff40;
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  color: #e8f5e9;
+}
+
+.linkBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+}
