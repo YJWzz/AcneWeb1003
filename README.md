@@ -43,7 +43,7 @@
 7. 生成的本地端即可利用
 
 ### 四、其他注意事項
-1. frontend & frontend 都需要新增.env檔案
+1. frontend & backend 都需要新增.env檔案
 
 frontend:
 
