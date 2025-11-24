@@ -9,6 +9,7 @@ from flask_cors import CORS
 import time, psutil, os
 import threading, uuid
 from dotenv import load_dotenv   
+from zoneinfo import ZoneInfo
 load_dotenv() 
 
 # ---------- 基本設定 ----------
@@ -266,3 +267,4 @@ if __name__ == "__main__":
         port=int(os.getenv("FLASK_PORT", 5000)),
         # debug=True               # 本地開 debug 方便追錯
     )
+
